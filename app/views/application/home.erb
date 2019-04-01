@@ -1,2 +1,7 @@
-<%= current_user.username %>
-<h1> WeCodeCamp </h1>
+<% if session.key?("username")%>
+   Welcome, <%= session[:username] %>
+   
+<form method="POST" action="/logout">
+    <input type="submit" value="Log Out">
+</form>
+<% end %>
