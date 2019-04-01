@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :user_lessons
-  resources :user_chapters
-  resources :user_courses
+  get "/login",to:"sessions#new"
+  post "/login",to:"sessions#create"
+
   resources :lessons
   resources :chapters
   resources :users
