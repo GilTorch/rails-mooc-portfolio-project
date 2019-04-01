@@ -1,5 +1,10 @@
 class User < ApplicationRecord
     has_secure_password
+    
+    validates :email,presence: true, uniqueness: true 
+    validates :username,presence: true, uniqueness: true 
+
+
     has_many :user_courses 
     has_many :courses, through: :user_courses 
 
