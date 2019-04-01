@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  passed: false
+  chapter_id: 1
+
+two:
+  title: MyString
+  passed: false
+  chapter_id: 1
