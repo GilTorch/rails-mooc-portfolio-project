@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
        user=User.find_by(username:params[:username])
        if user && user.authenticate(params[:password])
         session[:username]=user.username 
-        redirect_to "/login"
+        redirect_to "/"
        end
     end 
 
@@ -13,5 +13,9 @@ class SessionsController < ApplicationController
     end 
 
     def destroy 
+      if session.key?("username")
+        session.delete :username
+        redirect_to "/"
+      end
     end
 end
