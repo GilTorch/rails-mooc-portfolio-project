@@ -11,12 +11,14 @@ class UsersController < ApplicationController
             redirect_to "/users/new"
         end
     end
+    
+    def show 
+        @user=User.find_by(params[:id])
+    end
 
 
     def user_params
         params.require(:user).permit(:username,:email,:password,:password_confirmation)
     end
-
-
 
 end
