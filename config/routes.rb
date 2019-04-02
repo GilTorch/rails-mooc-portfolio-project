@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "/auth/facebook/callback",to:"sessions#create"
 
-  get "/",to:"application#home"
+  get "/",to:"application#home",as:"root"
 
   resources :lessons
   resources :chapters
