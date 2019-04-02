@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 <%= render partial: "form" %>
+=======
+<%= form_for @course do |f| %>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+<% end %>
+>>>>>>> master
