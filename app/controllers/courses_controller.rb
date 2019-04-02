@@ -3,6 +3,14 @@ class CoursesController < ApplicationController
         @course=Course.new
     end
 
+    def index
+        @courses=Course.all
+    end
+
+    def edit 
+        @course=Course.find_by(id:params[:id])
+    end
+
     def create
         course=Course.new(course_params)
 
@@ -13,10 +21,21 @@ class CoursesController < ApplicationController
         end
     end
 
+    def update 
+        @course=Course.find_by(id:params[:id])
+        @course.update(course_params)
+        redirect_to course_path(@course)
+    end
+
     def show 
         @course=Course.find_by(id:params[:id])
     end
 
+    def destroy
+        course=Course.find_by(id:params[:id])
+        course.destroy 
+        redirect_to courses_path
+    end
 
     def course_params
         params.require(:course).permit(:title)
