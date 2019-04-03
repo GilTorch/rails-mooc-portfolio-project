@@ -1,0 +1,11 @@
+<%= form_for @chapter do |f| %>
+    <!-- Select course associated with the chapter -->
+    <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+<% end %>

@@ -1,0 +1,5 @@
+<ul>
+<% @chapters.each do |chapter| %>
+    <li><%= chapter.id %>.-<%= link_to("#{chapter.title}",chapter_path(chapter)) %>-Course Related:<%= link_to("#{chapter.course.title}",course_path(chapter.course)) %></li>
+<% end %>
+</ul>
