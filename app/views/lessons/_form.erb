@@ -1,0 +1,15 @@
+<%= form_for @lesson do |f| %>
+    <!-- Select course associated with the chapter -->
+    <% if @chapters!=[] %>
+    <%= select_tag "chapter_id", options_from_collection_for_select(@chapters, "id", "title") %>
+    <% else %> 
+        No Chapters Added Yet. <%= link_to("Create a Chapter",new_chapter_path) %>
+    <% end %>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+<% end %>
