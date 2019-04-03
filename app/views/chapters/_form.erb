@@ -1,6 +1,12 @@
 <%= form_for @chapter do |f| %>
     <!-- Select course associated with the chapter -->
-    <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
+    <% if @courses!=[] %>
+    <label for="course_id">Related Course</label>
+        <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
+    <% else %> 
+        No Courses Added Yet. <%= link_to("Create a Course",new_course_path) %>
+    <% end %>
+ 
     <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title %>

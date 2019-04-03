@@ -20,7 +20,7 @@ class ChaptersController < ApplicationController
 
     def edit
         @chapter=Chapter.find_by(id:params[:id])
-        @courses=[@chapter.course]
+        @courses=Course.all
     end
 
     def update 
