@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_140926) do
   create_table "user_chapters", force: :cascade do |t|
     t.integer "user_id"
     t.integer "chapter_id"
-    t.boolean "passed", default: false
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_140926) do
   create_table "user_courses", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
-    t.boolean "passed", default: false
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_140926) do
   create_table "user_lessons", force: :cascade do |t|
     t.integer "user_id"
     t.integer "lesson_id"
-    t.boolean "passed", default: false
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
