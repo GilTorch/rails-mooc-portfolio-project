@@ -1,5 +1,7 @@
 Course: <%= @chapter.course.title %>
+Chapter: <%= @chapter.title %>
 <h1><%= @lesson.title %></h1>
+<p><%= @lesson.content %></p>
 
 <%= link_to 'Edit', edit_lesson_path %>
 <%= link_to 'Destroy', lesson_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete %>

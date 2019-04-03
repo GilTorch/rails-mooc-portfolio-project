@@ -9,6 +9,7 @@ class LessonsController < ApplicationController
     end
 
     def create
+        puts lesson_params.inspect
         lesson=Lesson.new(lesson_params)
         lesson.chapter=Chapter.find_by(id:params[:chapter_id])
         if lesson.save 
@@ -19,17 +20,17 @@ class LessonsController < ApplicationController
     end
 
     def edit
-        @chapter=Chapter.find_by(id:params[:id])
-        @courses=[@chapter.course]
+        @lesson=Lesson.find_by(id:params[:id])
+        @chapters=Chapter.all
     end
 
     def update 
         puts params.inspect
-        @chapter=Chapter.find_by(id:params[:id])
-        @chapter.course=Course.find_by(id:params[:course_id])
-        puts @chapter.inspect
-        if @chapter.update(chapter_params)
-            redirect_to chapter_path(@chapter) 
+        @lesson=Lesson.find_by(id:params[:id])
+        @lesson.chapter=Chapter.find_by(id:params[:chapter_id])
+       
+        if @lesson.update(lesson_params)
+            redirect_to lesson_path(@lesson) 
         else 
             redirect_to root_path
         end
@@ -38,9 +39,9 @@ class LessonsController < ApplicationController
 
 
     def destroy
-        chapter=Chapter.find_by(id:params[:id])
-        chapter.destroy 
-        redirect_to chapters_path
+        lesson=Lesson.find_by(id:params[:id])
+        lesson.destroy 
+        redirect_to lessons_path
     end
 
 
@@ -50,6 +51,6 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params 
-        params.require(:lesson).permit(:title)
+        params.require(:lesson).permit(:title,:content,:is_a_lab)
     end
 end
