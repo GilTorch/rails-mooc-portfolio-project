@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2019_04_01_140926) do
 
   create_table "lessons", force: :cascade do |t|
     t.string "title"
+    t.boolean "is_a_lab", default: false
+    t.text "content"
     t.integer "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
