@@ -27,6 +27,17 @@ class CoursesController < ApplicationController
         redirect_to course_path(@course)
     end
 
+    def reset
+        course=Course.find_by(id:params[:id])
+        if course
+            reset_course(course)
+            redirect_to course_path(course)
+        else
+            redirect_to root_path 
+        end
+    end
+
+
     def show 
         @course=Course.find_by(id:params[:id])
     end
