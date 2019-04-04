@@ -1,1 +1,6 @@
-Hello, <%= @user.username %>
+Welcome to your Dashboard, <%= @user.username %>
+
+Your Progess: 0 course(s) completed, 0 chapter(s) completed, 0 lesson(s) completed 
+
+<%= link_to 'Edit', edit_user_path %>
+<%= link_to 'Destroy', user_path(@user),data: {:confirm => 'Are you sure?'}, :method => :delete %>
