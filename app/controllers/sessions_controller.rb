@@ -29,7 +29,8 @@ class SessionsController < ApplicationController
         if is_logged_in?
             redirect_to user_path(current_user.id)
         end
-    end 
+    end
+    
 
     def destroy 
       if is_logged_in?
