@@ -1,4 +1,11 @@
 Course: <%= @chapter.course.title %>
+Status:
+<% if chapter_completed(@chapter) %>
+    Completed 
+<% else %>
+    Not Yet Completed
+<% end %>
+
 <h1><%= @chapter.title %></h1>
 
 <%= link_to 'Edit', edit_chapter_path %>

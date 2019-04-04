@@ -11,12 +11,23 @@ module ApplicationHelper
     end
 
     def lesson_completed(lesson)
-        puts current_user.inspect
         user_lesson= UserLesson.find_by(lesson_id:lesson.id,user_id:current_user.id)
         if user_lesson 
             user_lesson.completed
         else 
             false
         end
+    end
+
+    def chapter_completed(chapter)
+        user_chapter=UserChapter.find_by(chapter_id:chapter.id,user_id:current_user.id)
+        if !chapter.lessons.empty? && chapter.lessons.each do |lesson|
+                user_lesson=UserLesson.find_or_create_by(lesson_id:lesson.id)
+                if !user_lesson.completed
+                    return false
+                end
+            end
+        end
+        return true
     end
 end
