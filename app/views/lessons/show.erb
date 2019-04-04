@@ -9,5 +9,6 @@ Chapter: <%= @chapter.title %>
 <p><%= @lesson.content %></p>
 
 <%= link_to "Mark As Complete",complete_lesson_path(@lesson) %>
+<%= link_to "Reset Lesson",reset_lesson_path(@lesson) %>
 <%= link_to 'Edit', edit_lesson_path %>
 <%= link_to 'Destroy', lesson_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete %>

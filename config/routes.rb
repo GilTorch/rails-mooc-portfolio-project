@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "/",to:"application#home",as:"root"
   get "/lessons/:id/complete",to:"lessons#complete",as:"complete_lesson"
+  get "/lessons/:id/reset",to:"lessons#reset",as:"reset_lesson"
 
   resources :lessons
   resources :chapters
