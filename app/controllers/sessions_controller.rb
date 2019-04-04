@@ -3,11 +3,14 @@ class SessionsController < ApplicationController
 
     def create
         if auth
+            
             user = User.find_or_create_by(id: auth['uid']) do |u|
                 u.username = auth['info']['name']
                 u.email = auth['info']['email']
+                u.password_digest="No Password"
                 # u.image = auth['info']['image']
               end
+              puts user.inspect
               session[:username]=user.username 
               redirect_to user_path(user)
         else
@@ -37,6 +40,7 @@ class SessionsController < ApplicationController
 
     private 
         def auth 
+            puts "AUTH:"+request.env["omniauth.auth"].inspect
             request.env["omniauth.auth"]
         end
 
