@@ -6,6 +6,7 @@ class LessonsController < ApplicationController
     def new 
         @chapters=Chapter.all
         @lesson=Lesson.new
+        puts @lesson.inspect
     end
 
     def create
@@ -17,6 +18,14 @@ class LessonsController < ApplicationController
         else 
             redirect_to root_path
         end
+    end
+
+    def complete 
+        @lesson=Lesson.find_by(id:params[:id])
+        user_lesson=UserLesson.find_or_create_by(user_id:current_user.id,lesson_id:@lesson.id)
+        user_lesson.completed=true 
+        user_lesson.save
+        redirect_to lesson_path(@lesson)
     end
 
     def edit

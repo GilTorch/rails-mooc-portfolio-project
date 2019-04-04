@@ -1,7 +1,13 @@
 Course: <%= @chapter.course.title %>
+<% if lesson_completed(@lesson) %>
+    Completed 
+<% else %>
+    Not Yet Completed
+<% end %>
 Chapter: <%= @chapter.title %>
 <h1><%= @lesson.title %></h1>
 <p><%= @lesson.content %></p>
 
+<%= link_to "Mark As Complete",complete_lesson_path(@lesson) %>
 <%= link_to 'Edit', edit_lesson_path %>
 <%= link_to 'Destroy', lesson_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete %>
