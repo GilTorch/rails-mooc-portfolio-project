@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/lessons/:id/complete",to:"lessons#complete",as:"complete_lesson"
   get "/lessons/:id/reset",to:"lessons#reset",as:"reset_lesson"
 
+  get "/chapters/:id/reset",to:"chapters#reset",as:"reset_chapter"
+
   resources :lessons
   resources :chapters
   resources :users

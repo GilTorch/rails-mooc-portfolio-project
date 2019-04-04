@@ -8,5 +8,8 @@ Status:
 
 <h1><%= @chapter.title %></h1>
 
+<% if chapter_completed(@chapter) %>
+    <%= link_to 'Reset All Lessons In Chapter', reset_chapter_path(@chapter) %>
+<% end %>
 <%= link_to 'Edit', edit_chapter_path %>
 <%= link_to 'Destroy', chapter_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete %>
