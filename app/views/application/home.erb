@@ -1,5 +1,5 @@
-<% if session.key?("username")%>
-   Welcome, <%= session[:username] %>
+<% if current_user %>
+   Welcome, <%= current_user.username %>
    
 <form method="POST" action="/logout">
     <input type="submit" value="Log Out">
