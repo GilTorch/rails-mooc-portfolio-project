@@ -18,9 +18,25 @@ module ApplicationHelper
             false
         end
     end
+    
+    def complete_lesson(lesson)
+        user_lesson=UserLesson.find_or_create_by(user_id:current_user.id,lesson_id:@lesson.id)
+        user_lesson.completed=true 
+        user_lesson.save
+    end
+
 
     def reset_lesson(lesson)
         user_lesson=UserLesson.find_by(lesson_id:lesson.id,user_id:current_user.id)
+        
+        if lesson.is_a_lab
+            user_solution=UserSolution.find_by(user_lesson_id:user_lesson.id)
+            if user_solution 
+                user_solution.validated=false
+                user_solution.save
+            end
+        end
+
         if user_lesson 
             user_lesson.completed=false
             user_lesson.save

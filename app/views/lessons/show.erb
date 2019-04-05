@@ -10,9 +10,17 @@ Chapter: <%= @chapter.title %>
 
 <% if lesson_completed(@lesson) %>
     <%= link_to "Reset Lesson",reset_lesson_path(@lesson) %>
+    <% if @lesson.is_a_lab %>
+        <%= render partial:"form_solution" %>
+    <% end %>
 <% else %>
-    <%= link_to "Mark As Complete",complete_lesson_path(@lesson) %>
+    <% if !@lesson.is_a_lab %>
+        <%= link_to "Mark As Complete",complete_lesson_path(@lesson) %>
+    <% else %>
+        <%= render partial:"form_solution" %>
+    <% end %>
 <% end %>
+
 
 
 <%= link_to 'Edit', edit_lesson_path %>

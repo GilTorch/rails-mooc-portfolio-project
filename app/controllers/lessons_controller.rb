@@ -6,7 +6,6 @@ class LessonsController < ApplicationController
     def new 
         @chapters=Chapter.all
         @lesson=Lesson.new
-        puts @lesson.inspect
     end
 
     def create
@@ -22,9 +21,7 @@ class LessonsController < ApplicationController
 
     def complete 
         @lesson=Lesson.find_by(id:params[:id])
-        user_lesson=UserLesson.find_or_create_by(user_id:current_user.id,lesson_id:@lesson.id)
-        user_lesson.completed=true 
-        user_lesson.save
+        complete_lesson(@lesson)
         redirect_to lesson_path(@lesson)
     end
 
@@ -38,6 +35,23 @@ class LessonsController < ApplicationController
     def edit
         @lesson=Lesson.find_by(id:params[:id])
         @chapters=Chapter.all
+    end
+
+    def validate 
+        @lesson=Lesson.find_by(id:params[:id])
+
+        user_lesson = UserLesson.find_by(user_id:current_user.id,lesson_id:@lesson.id)
+        if user_lesson 
+           user_solution=UserSolution.find_by(user_lesson_id:user_lesson.id)
+           if user_solution 
+                if user_solution.content!=""
+                    user_solution.validated=true 
+                    user_solution.save 
+                    complete_lesson(@lesson)
+                end
+           end
+        end
+        redirect_to lesson_path(@lesson)
     end
 
     def update 
