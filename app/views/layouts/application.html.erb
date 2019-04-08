@@ -8,13 +8,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
+  <body>
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
-  <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="brand">WeCode</a></h5>
+  <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="brand">WeCode</a></h5>
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="/">Home</a>
-    <a class="p-2 text-dark" href="/faq">FAQ</a>
+    <a class="p-2 text-dark" href="/courses">Curriculum</a>
     <% if !is_logged_in? %>
-        <a class="p-2 text-dark" href="/courses">Curriculum</a>
         <a class="p-2 text-dark" href="/login">Login</a>
     <% else %>
         <%= link_to "#{current_user.username}",user_path(current_user) %>
@@ -23,8 +24,15 @@
   </nav>
   <a class="btn btn-outline-primary" href="<%= new_user_path %>">Sign up</a>
 </div>
-  <body>
       <%= yield %>
+      <footer class="jumbotron mb-0 text-center">
+        <h3>Follow Us On Social Media</h3>
+        <ul class="offset-md-3 col-md-6  social-media">
+          <li class="btn btn-secondary"><i class="fa fa-facebook"></i> Facebook</li>
+          <li class="btn btn-secondary"><i class="fa fa-twitter"></i> Twitter</li>
+          <li class="btn btn-secondary"><i class="fa fa-linkedin"></i> Linkedin</li>
+        </ul>
+      </footer>
   </body>
 </html>
 
