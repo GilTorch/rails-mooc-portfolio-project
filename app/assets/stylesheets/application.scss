@@ -16,6 +16,21 @@
 @import 'bootstrap';
 @import 'font-awesome';
 
+.container .jumbotron {
+    padding:1%;
+}
+
+.home-section-1{
+    background:#0023B0;
+    color:white;
+    border:0 !important;
+}
+
+.home-section-2{
+    background:rgb(11, 190, 255);
+    color:white;
+    border:0 !important;  
+}
 .auth-buttons{
     height:50px;
 }
@@ -30,4 +45,28 @@
     border-radius:4px;
     margin-top:20px;
     padding:2%;
+}
+
+// .box{
+//     font-size:30px;
+// }
+hr{
+border: 0;
+height: 1px;
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.action-button{
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgb(253, 198, 45) 0%, rgba(253,187,45,1) 100%);
+    box-shadow: 1px 1px 1px rgb(53, 48, 0);
+    height:50px;
+}
+
+.social-media{
+    list-style-type:none;
+
+    li{
+        display: inline;
+    }
 }
