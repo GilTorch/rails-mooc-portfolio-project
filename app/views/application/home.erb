@@ -1,7 +1,14 @@
-<% if current_user %>
-   Welcome, <%= current_user.username %>
-   
-<form method="POST" action="/logout">
-    <input type="submit" value="Log Out">
-</form>
-<% end %>
+
+
+<div class="jumbotron">
+  <h1 class="display-4 text-center">Learn To Code For Free<span style="font-size:100px">.</span></h1>
+  
+  <hr class="my-4">
+  <p>
+  <h2>Our mission</h2> 
+  to help people learn to code for <b>free</b>. 
+  We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public. 
+  We also have thousands of freeCodeCamp study groups around the world.
+  </p>
+  <a class="btn btn-success btn-lg" href="/courses" role="button">Get Started</a>
+</div>

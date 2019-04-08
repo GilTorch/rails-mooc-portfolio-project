@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+@import 'bootstrap';
+@import 'font-awesome';
+
+.auth-buttons{
+    height:50px;
+}
+
+.facebook-button{
+    background-color:#3B5998;
+    padding-top:10px;
+}
+
+.login-form,.signup-form{
+    border:1px solid #eee;
+    border-radius:4px;
+    margin-top:20px;
+    padding:2%;
+}

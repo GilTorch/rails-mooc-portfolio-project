@@ -1,19 +1,19 @@
-<%= form_for @user do |f|%>
+<%= form_for @user, html: { class: "signup-form col-md-6 offset-md-3" } do |f| %>
     <div class="form-group">
         <%= f.label :username %>
-        <%= f.text_field :username %>
+        <%= f.text_field :username,:class => "form-control" %>
     </div>
     <div class="form-group">
         <%= f.label :email %>
-        <%= f.email_field :email %>
+        <%= f.email_field :email,:class => "form-control" %>
     </div>
     <div class="form-group">
         <%= f.label :password %>
-        <%= f.password_field :password %>
+        <%= f.password_field :password,:class => "form-control" %>
     </div>
     <div class="form-group">
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation,:class => "form-control" %>
     </div>
-    <%= f.submit "Sign Up" %>
+    <%= f.submit "Edit Profile" , :class => "auth-buttons col-md-12 btn btn-secondary" %>
 <% end %>

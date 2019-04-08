@@ -1,2 +1,20 @@
-<h1>Sign Up:</h1>
-<%= render partial:"form" %>
+<%= form_for @user, html: { class: "signup-form col-md-6 offset-md-3" } do |f| %>
+    <h1 class="text-center">Sign Up</h1>
+    <div class="form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username,:class => "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email,:class => "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password,:class => "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation,:class => "form-control" %>
+    </div>
+    <%= f.submit "Sign Up" , :class => "auth-buttons col-md-12 btn btn-secondary" %>
+<% end %>
