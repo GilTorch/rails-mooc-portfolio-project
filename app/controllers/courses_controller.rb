@@ -30,9 +30,9 @@ class CoursesController < ApplicationController
     end
 
     def reset
-        if course
-            reset_course(course)
-            redirect_to course_path(course)
+        if @course
+            reset_course(@course)
+            redirect_to course_path(@course)
         else
             redirect_to root_path 
         end
@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
     def course_params
         params.require(:course).permit(:title)
     end
-
+    
     def require_login
         redirect_to login_path unless session.include? :username
     end

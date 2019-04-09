@@ -8,5 +8,7 @@
             <input type="submit" value="Submit Solution" />
 </form>
 <% if current_user.admin %>
-    <%= link_to "Validate Solution",validate_lesson_path(@lesson) %> 
+    <div class="text-center mt-3 mb-3">
+        <%= link_to "Validate Solution",validate_lesson_path(@lesson),:class => "btn btn-danger" %> 
+    </div>
 <% end %>

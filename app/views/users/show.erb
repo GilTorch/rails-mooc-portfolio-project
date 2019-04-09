@@ -1,6 +1,15 @@
-Welcome to your Dashboard, <%= @user.username %>
 
-Your Progess: 0 course(s) completed, 0 chapter(s) completed, 0 lesson(s) completed 
+<div class="user-show-container text-center col-md-6 offset-md-3 mt-3 mb-3 pb-0">
+Welcome to your Dashboard, <b><%= @user.username %></b>
 
-<%= link_to 'Edit', edit_user_path %>
-<%= link_to 'Destroy', user_path(@user),data: {:confirm => 'Are you sure?'}, :method => :delete %>
+<div>
+    Your Progess: 
+    <p><b><%= all_courses_completed %></b> course(s) completed </p>
+    <p><b><%= all_chapters_completed %></b> chapter(s) completed </p>
+    <p><b><%= all_lessons_completed %></b> lesson(s) completed </p>
+</div>
+<div class="jumbotron jumbotron-fluid actions">
+    <%= link_to 'Edit Profile', edit_user_path,:class=>"btn btn-primary" %>
+    <%= link_to 'Destroy Profile', user_path(@user),data: {:confirm => 'Are you sure?'}, :method => :delete,:class=>"btn btn-danger" %>
+</div>
+</div>
