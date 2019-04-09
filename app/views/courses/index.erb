@@ -1,5 +1,13 @@
-<ul>
-<% @courses.each do |course| %>
-    <li><%= course.id %>.-<%= link_to("#{course.title}",course_path(course)) %></li>
-<% end %>
-</ul>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="courses-container col-md-6 offset-md-3 mt-3 mb-3">
+            <ul>
+                <h3>Courses available on the platform:</h3>
+                <% @courses.each do |course| %>
+                    <li><%= course.id %>.-<%= link_to("#{course.title}",course_path(course)) %> <i class="<%= complete_fail_icon(course,"course") %>"></i></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>

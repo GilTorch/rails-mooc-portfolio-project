@@ -6,8 +6,9 @@ module ApplicationHelper
     def current_user 
         if is_logged_in?
            user= User.find_by(username:session[:username])
-        #    puts User.all.inspect
-        end 
+           return user
+        #    puts User.all.inspect 
+        end
     end
 
     def lesson_completed(lesson)
@@ -43,9 +44,34 @@ module ApplicationHelper
         end
     end
 
+
+    def all_lessons_completed 
+       if current_user
+       user_lessons= UserLesson.where("user_id = ? AND completed = ? ",current_user.id,true)
+       user_lessons.count
+       end
+    end
+
+    def all_courses_completed 
+        if current_user
+        user_courses= UserCourse.where("user_id = ? AND completed = ? ",current_user.id,true)
+        puts user_courses.inspect
+        user_courses.count
+        end
+    end
+
+
+    def all_chapters_completed 
+        if current_user
+            puts "CURRENT USER ID IN RESET CHAPTER METHOD: #{current_user.id}"
+        user_chapters= UserChapter.where("user_id = ? AND completed = ? ",current_user.id,true)
+        user_chapters.count
+        end
+    end
+
     def course_completed(course)
-        user_course=UserCourse.find_by(course_id:course.id,user_id:current_user.id)
-        if !course.chapters.empty?
+        user_course=UserCourse.find_or_create_by(course_id:course.id,user_id:current_user.id)
+        if user_course && !course.chapters.empty?
             course.chapters.each do |chapter|
                 if !chapter_completed(chapter)
                     return false 
@@ -69,7 +95,7 @@ module ApplicationHelper
     end
 
     def chapter_completed(chapter)
-        user_chapter=UserChapter.find_by(chapter_id:chapter.id,user_id:current_user.id)
+        user_chapter=UserChapter.find_or_create_by(chapter_id:chapter.id,user_id:current_user.id)
         if !chapter.lessons.empty? 
             chapter.lessons.each do |lesson|
                 if !lesson_completed(lesson)
@@ -78,6 +104,20 @@ module ApplicationHelper
             end
         end
         return true
+    end
+
+    def complete_fail_icon(ressource,type)
+        complete_icon="fa fa-check-circle green"
+        fail_icon="fa fa-circle red"
+        case type 
+            when "course"
+                course_completed(ressource) ? complete_icon : fail_icon
+            when "chapter"
+                chapter_completed(ressource) ? complete_icon : fail_icon
+            when "lesson"
+                lesson_completed(ressource) ? complete_icon : fail_icon
+        end
+        
     end
 
     def reset_chapter(chapter)
@@ -89,6 +129,9 @@ module ApplicationHelper
                 chapter.lessons.each do |lesson|
                     reset_lesson(lesson)
                 end
+            else 
+                user_chapter.completed=false
+                user_chapter.save
             end
         end
     end

@@ -20,6 +20,25 @@
     padding:1%;
 }
 
+
+.course-container,.courses-container,.lessons-container,.user-show-container{
+    min-height:500px; 
+    border:1px solid #eee;
+    border-radius:3px;
+    padding-top:20px;
+}
+
+.red{
+    color:red
+}
+
+.green{
+    color:green
+}
+
+.home-section-1,.home-section-2{
+    padding:2%;
+}
 .home-section-1{
     background:#0023B0;
     color:white;

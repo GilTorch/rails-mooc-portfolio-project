@@ -1,27 +1,39 @@
-Course: <%= @chapter.course.title %>
+<div class="container-fluid ml-0 mr-0">
+<div class="jumbotron jumbotron-fluid">
+<h1 class="text-center"><%= @lesson.title %> <i class="<%= complete_fail_icon(@lesson,"lesson") %>"></i></h1>
+</div>
+<div class="row">
+<div class="lessons-container offset-md-3 col-md-6 mt-3 mb-3">
+    <p class="text-center"> 
+        <%= @lesson.content %>
+    </p>
 <% if lesson_completed(@lesson) %>
-    Completed 
-<% else %>
-    Not Yet Completed
-<% end %>
-Chapter: <%= @chapter.title %>
-<h1><%= @lesson.title %></h1>
-<p><%= @lesson.content %></p>
-
-<% if lesson_completed(@lesson) %>
-    <%= link_to "Reset Lesson",reset_lesson_path(@lesson) %>
     <% if @lesson.is_a_lab %>
         <%= render partial:"form_solution" %>
     <% end %>
 <% else %>
     <% if !@lesson.is_a_lab %>
-        <%= link_to "Mark As Complete",complete_lesson_path(@lesson) %>
+        <div class="text-center mb-2">
+             <%= link_to "Mark As Complete",complete_lesson_path(@lesson),:class=>"btn btn-success" %>
+        </div>
     <% else %>
         <%= render partial:"form_solution" %>
     <% end %>
 <% end %>
-
-
-
-<%= link_to 'Edit', edit_lesson_path %>
-<%= link_to 'Destroy', lesson_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete %>
+  <div class="text-center"> 
+      <%= link_to "Go Back To Related Course",course_path(@chapter.course),:class => "btn btn-success" %> 
+      <%= link_to "Go Back To Related Chapter",chapter_path(@chapter),:class => "btn btn-primary" %> 
+      <% if lesson_completed(@lesson) %>
+        <%= link_to "Reset Lesson",reset_lesson_path(@lesson),:class=>"btn btn-secondary" %>
+      <% end %>
+     <% if current_user.admin %>
+        <div class="jumbotron jumbotron-fluid mt-2">
+                    <h4 class="text-center">Admin Actions</h4>
+                    <%= link_to 'Edit Lesson', edit_lesson_path,:class=>"btn btn-primary" %>
+                    <%= link_to 'Destroy Lesson', lesson_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete,:class=>"btn btn-danger" %>
+        </div>
+    <% end %>
+  </div>
+  </div>
+</div>
+</div>
