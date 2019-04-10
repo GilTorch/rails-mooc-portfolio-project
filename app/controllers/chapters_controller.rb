@@ -39,7 +39,7 @@ class ChaptersController < ApplicationController
 
 
     def destroy
-        chapter.destroy 
+        @chapter.destroy 
         redirect_to chapters_path
     end
 
