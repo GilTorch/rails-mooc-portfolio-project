@@ -1,4 +1,17 @@
 <%= form_for @user, html: { class: "signup-form col-md-6 offset-md-3" } do |f| %>
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger error_explanation">
+            <h2>
+            <%= pluralize(@user.errors.count, "error") %> prohibited
+            this user from being saved:
+            </h2>
+            <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
     <h1 class="text-center">Sign Up</h1>
     <div class="form-group">
         <%= f.label :username %>
