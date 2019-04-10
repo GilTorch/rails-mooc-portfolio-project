@@ -15,15 +15,18 @@ class SessionsController < ApplicationController
                 # u.image = auth['info']['image']
               end
               session[:username]=user.username 
+              flash[:success]="Successfully logged in."
               redirect_to user_path(user)
         else
             user=User.find_by(username:params[:username])
 
             if user && user.authenticate(params[:password])
                 session[:username]=user.username 
+                flash[:success]="Successfully logged in."
                 redirect_to user_path(user)
             else 
-                redirect_to root_path
+                flash[:danger]="There was an error while trying to connect you with your account. Check your credentials."
+                redirect_to login_path
             end
         end
     end 

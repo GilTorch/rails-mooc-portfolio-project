@@ -1,5 +1,13 @@
 
 <div class="user-show-container text-center col-md-6 offset-md-3 mt-3 mb-3 pb-0">
+<% flash.each do |key, value| %>
+<div class="flash-messages">
+  <% if key=="success" %> 
+   <div class="alert alert-success"><%= flash[:success] %></div>
+ <% end %>
+ </div>
+<% end %>
+
 Welcome to your Dashboard, <b><%= @user.username %></b>
 
 <div>

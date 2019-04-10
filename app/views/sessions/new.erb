@@ -1,6 +1,11 @@
 
 <div class="login-container">
 <form class="login-form col-md-6 offset-md-3" action="/login" method="POST"> 
+    <% flash.each do |key, value| %>
+        <div class="flash-messages">
+            <div class="alert alert-<%= key %>"><%= flash[key] %></div>
+        </div>
+    <% end %>
     <h1 class="text-center">Log In</h1>
     <div class="form-group">
         <label for="username">Username:</label>
