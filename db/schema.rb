@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_01_140926) do
+ActiveRecord::Schema.define(version: 2019_04_04_185841) do
 
   create_table "chapters", force: :cascade do |t|
     t.string "title"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2019_04_01_140926) do
     t.integer "user_id"
     t.integer "lesson_id"
     t.boolean "completed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_solutions", force: :cascade do |t|
+    t.text "content"
+    t.boolean "validated", default: false
+    t.integer "user_lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

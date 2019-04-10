@@ -1,5 +1,28 @@
-Course: <%= @chapter.course.title %>
-<h1><%= @chapter.title %></h1>
+<div class="container-fluid ml-0 mr-0">
+<div class="jumbotron jumbotron-fluid">
+    <h1 class=" text-center"><%= @chapter.title %>  <i class="<%= complete_fail_icon(@chapter,"chapter") %>"></i></h1>
+    <% if chapter_completed(@chapter) %>
+    <div class="text-center">
+        <%= link_to 'Reset All Lessons In Chapter', reset_chapter_path(@chapter),:class=>"btn btn-danger" %>
+    </div>
+    <% end %>
+ </div>   
+<div class="row">
+<div class="course-container offset-md-3 col-md-6 mt-3 mb-3">
+<ul>
+<h3>Lessons</h3>
+<% @chapter.lessons.each do |lesson| %>
+    <li><%= link_to "#{lesson.title}" ,lesson_path(lesson) %> <i class="<%= complete_fail_icon(lesson,"lesson") %>"></i></li>
+<% end %>
+</ul>
 
-<%= link_to 'Edit', edit_chapter_path %>
-<%= link_to 'Destroy', chapter_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete %>
+<div class="text-center">
+    <%= link_to "Go Back To Related Course",course_path(@chapter.course),:class => "btn btn-success" %> 
+    <% if current_user.admin %>
+        <%= link_to 'Edit', edit_chapter_path,:class =>"btn btn-primary" %>
+        <%= link_to 'Destroy', chapter_path(@chapter),data: {:confirm => 'Are you sure?'}, :method => :delete,:class =>"btn btn-danger" %>
+    <% end %>
+</div>
+</div>
+</div>
+</div>

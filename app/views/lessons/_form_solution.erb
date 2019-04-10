@@ -1,0 +1,14 @@
+<form  method="POST" action="<%= user_solutions_path %>">
+            <div class="form-group">
+                <label for="lesson_id" >Lab Solution</label>
+                <input id="lesson_id" type="hidden" name="lesson_id" value="<%= @lesson.id %>" />
+                <textarea name="solution">
+                </textarea>
+            </div>
+            <input type="submit" value="Submit Solution" />
+</form>
+<% if current_user.admin %>
+    <div class="text-center mt-3 mb-3">
+        <%= link_to "Validate Solution",validate_lesson_path(@lesson),:class => "btn btn-danger" %> 
+    </div>
+<% end %>

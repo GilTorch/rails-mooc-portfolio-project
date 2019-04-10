@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import 'bootstrap';
+@import 'font-awesome';
+
+.container .jumbotron {
+    padding:1%;
+}
+
+
+.course-container,.courses-container,.lessons-container,.user-show-container{
+    min-height:500px; 
+    border:1px solid #eee;
+    border-radius:3px;
+    padding-top:20px;
+}
+
+.red{
+    color:red
+}
+
+.green{
+    color:green
+}
+
+.home-section-1,.home-section-2{
+    padding:2%;
+}
+.home-section-1{
+    background:#0023B0;
+    color:white;
+    border:0 !important;
+}
+
+.home-section-2{
+    background:rgb(11, 190, 255);
+    color:white;
+    border:0 !important;  
+}
+.auth-buttons{
+    height:50px;
+}
+
+.facebook-button{
+    background-color:#3B5998;
+    padding-top:10px;
+}
+
+.login-form,.signup-form{
+    border:1px solid #eee;
+    border-radius:4px;
+    margin-top:20px;
+    padding:2%;
+}
+
+// .box{
+//     font-size:30px;
+// }
+hr{
+border: 0;
+height: 1px;
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.action-button{
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgb(253, 198, 45) 0%, rgba(253,187,45,1) 100%);
+    box-shadow: 1px 1px 1px rgb(53, 48, 0);
+    height:50px;
+}
+
+.social-media{
+    list-style-type:none;
+
+    li{
+        display: inline;
+    }
+}

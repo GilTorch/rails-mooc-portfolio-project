@@ -1,4 +1,8 @@
 class CoursesController < ApplicationController
+    before_action :require_login 
+    before_action :set_course,only:[:edit,:show,:update,:reset]
+
+    
     def new 
         @course=Course.new
     end
@@ -8,7 +12,6 @@ class CoursesController < ApplicationController
     end
 
     def edit 
-        @course=Course.find_by(id:params[:id])
     end
 
     def create
@@ -22,22 +25,37 @@ class CoursesController < ApplicationController
     end
 
     def update 
-        @course=Course.find_by(id:params[:id])
         @course.update(course_params)
         redirect_to course_path(@course)
     end
 
+    def reset
+        if @course
+            reset_course(@course)
+            redirect_to course_path(@course)
+        else
+            redirect_to root_path 
+        end
+    end
+
+
     def show 
-        @course=Course.find_by(id:params[:id])
     end
 
     def destroy
-        course=Course.find_by(id:params[:id])
         course.destroy 
         redirect_to courses_path
     end
 
+    def set_course
+        @course=Course.find_by(id:params[:id])
+    end
+
     def course_params
         params.require(:course).permit(:title)
+    end
+    
+    def require_login
+        redirect_to login_path unless session.include? :username
     end
 end

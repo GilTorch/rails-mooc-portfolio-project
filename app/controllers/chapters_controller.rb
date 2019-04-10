@@ -37,6 +37,15 @@ class ChaptersController < ApplicationController
  
     end
 
+    def reset
+        chapter=Chapter.find_by(id:params[:id])
+        if chapter
+            reset_chapter(chapter)
+            redirect_to chapter_path(chapter)
+        else
+            redirect_to root_path 
+        end
+    end
 
     def destroy
         @chapter.destroy 

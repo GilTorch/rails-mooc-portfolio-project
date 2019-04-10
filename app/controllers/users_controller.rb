@@ -13,7 +13,7 @@ class UsersController < ApplicationController
             session[:username]=@user.username
             redirect_to user_path(@user)
         else 
-            redirect_to "/users/new"
+            render 'users/new'
         end
     end
 
