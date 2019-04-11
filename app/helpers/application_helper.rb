@@ -58,28 +58,22 @@ module ApplicationHelper
     end
 
 
-    def all_lessons_completed 
-       if current_user
-       user_lessons= UserLesson.where("user_id = ? AND completed = ? ",current_user.id,true)
+    def all_lessons_completed(user) 
+       user_lessons= UserLesson.where("user_id = ? AND completed = ? ",user.id,true)
        user_lessons.count
-       end
     end
 
-    def all_courses_completed 
-        if current_user
-        user_courses= UserCourse.where("user_id = ? AND completed = ? ",current_user.id,true)
+    def all_courses_completed(user) 
+        user_courses= UserCourse.where("user_id = ? AND completed = ? ",user.id,true)
         puts user_courses.inspect
         user_courses.count
-        end
     end
 
 
-    def all_chapters_completed 
-        if current_user
-            puts "CURRENT USER ID IN RESET CHAPTER METHOD: #{current_user.id}"
-        user_chapters= UserChapter.where("user_id = ? AND completed = ? ",current_user.id,true)
+    def all_chapters_completed(user) 
+        puts "CURRENT USER ID IN RESET CHAPTER METHOD: #{user.id}"
+        user_chapters= UserChapter.where("user_id = ? AND completed = ? ",user.id,true)
         user_chapters.count
-        end
     end
 
     def course_completed(course)

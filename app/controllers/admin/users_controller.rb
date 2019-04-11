@@ -45,6 +45,7 @@ class Admin::UsersController < AdminController
 
     def set_user 
         @user=User.find_by(id:params[:id])
+        @is_admin=@user.admin
         @users=User.all
     end
 
