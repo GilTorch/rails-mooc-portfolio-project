@@ -1,0 +1,72 @@
+<div class="container">
+<% flash.each do |key, value| %>
+<div class="flash-messages">
+  <% if key=="success" %> 
+   <div class="alert alert-success"><%= flash[:success] %></div>
+ <% end %>
+ </div>
+<% end %>
+<div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Chapters</h1>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Related Course</th>
+      <th scope="col">Lesson Count</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chapters.each do |chapter| %>
+        <tr>
+            <th scope="row"><%= chapter.id %></th>
+            <td><%= chapter.title %></td>
+            <td><%= chapter.course ? chapter.course.title : "No Course Related" %></td>
+            <td><%= chapter.lessons.count %></td>
+            <td>
+                <a class="btn btn-success" href="/admin/chapters/<%= chapter.id %>"><i class="fa fa-eye"></i></a>
+                <a class="btn btn-primary" href="/admin/chapters/<%= chapter.id %>/edit"><i class="fa fa-pencil"></i></a>
+                <%= link_to admin_chapter_path(chapter),data: {:confirm => 'Are you sure?'}, :method => :delete,:class=>"btn btn-danger" do  %>
+                    <i class="fa fa-trash"></i>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= form_for @chapter,url:"/admin/chapters",html: { class: "col-md-6 mb-3" } do |f| %>
+    <% if @chapter.errors.any? %>
+        <div class="alert alert-danger error_explanation">
+            <h2>
+            <%= pluralize(@chapter.errors.count, "error") %> prohibited
+            this course from being saved:
+            </h2>
+            <ul>
+                <% @chapter.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <% if @courses!=[] %>
+        <label for="course_id">Related Course</label>
+        <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
+    <% else %> 
+        No Courses Added Yet. <%= link_to("Create a Course",admin_courses_path) %>
+    <% end %>
+ 
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add New Chapter</h1>
+    </div>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title,:class => "form-control" %>
+    </div>
+    <%= f.submit %>
+<% end %>
+</div>
+</div>

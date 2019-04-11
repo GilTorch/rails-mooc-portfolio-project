@@ -1,0 +1,23 @@
+<div class="container">
+    <% flash.each do |key, value| %>
+    <div class="flash-messages">
+        <div class="alert alert-<%= key %>"><%= flash[key] %></div>
+    </div>
+    <% end %>
+    <%= form_for @chapter,url:"/admin/chapters/#{@chapter.id}", html: { class: "signup-form col-md-6 offset-md-3" } do |f| %>
+        <div class="text-center">
+            <h1>Edit Chapter</h1>
+        </div>
+        <% if @courses!=[] %>
+            <label for="course_id">Related Course</label>
+            <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
+        <% else %> 
+            No Courses Added Yet. <%= link_to("Create a Course",admin_courses_path) %>
+        <% end %>
+        <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title,:class => "form-control" %>
+        </div>
+        <%= f.submit "Edit Chapter" , :class => "auth-buttons col-md-12 btn btn-primary" %>
+    <% end %>
+</div>

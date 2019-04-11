@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :users, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
     resources :courses, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
+    resources :chapters, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
+    resources :lessons, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
   end
 
   resources :lessons
