@@ -81,10 +81,14 @@ module ApplicationHelper
         if user_course && !course.chapters.empty?
             course.chapters.each do |chapter|
                 if !chapter_completed(chapter)
+                    user_course.completed=false 
+                    user_course.save
                     return false 
                 end
             end
         end
+        user_course.completed=true 
+        user_course.save
         return true
     end
 
@@ -106,10 +110,14 @@ module ApplicationHelper
         if !chapter.lessons.empty? 
             chapter.lessons.each do |lesson|
                 if !lesson_completed(lesson)
+                    user_chapter.completed=false 
+                    user_chapter.save
                     return false
                 end
             end
         end
+        user_chapter.completed=true 
+        user_chapter.save
         return true
     end
 
