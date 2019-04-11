@@ -1,0 +1,16 @@
+
+<div class="user-show-container text-center col-md-6 offset-md-3 mt-3 mb-3 pb-0">
+<div class="jumbotron jumbotron-fluid">
+    <h2>Course Details</h2>
+</div>
+<div>
+    <h5 scope="row">Course ID:<span> <%= @course.id %></span></h5>
+    <h5 scope="row">Course Title:<span> <%= @course.title %></span></h5>
+    <h5 scope="row">Total Chapters:<span> <%= @course.chapters.count %></span></h5>
+    <h5 scope="row">Total Lessons:<span> <%= course_lessons_count(@course) %></span></h5>
+</div>
+<div class="jumbotron jumbotron-fluid actions">
+    <%= link_to 'Edit Course', edit_admin_course_path,:class=>"btn btn-primary" %>
+    <%= link_to 'Destroy Course', admin_course_path(@course),data: {:confirm => 'Are you sure?'}, :method => :delete,:class=>"btn btn-danger" %>
+</div>
+</div>

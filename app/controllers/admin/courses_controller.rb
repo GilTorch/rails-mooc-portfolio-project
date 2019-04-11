@@ -1,5 +1,5 @@
 class Admin::CoursesController < AdminController
-    before_action :set_user,only:[:show,:edit,:update] 
+    before_action :set_course,only:[:show,:edit,:update,:destroy] 
 
     def index 
         @courses=Course.all
@@ -7,50 +7,48 @@ class Admin::CoursesController < AdminController
     end
 
     def show 
-        render "admin/users/show"
+        render "admin/courses/show"
     end
 
     def create 
-        @user=User.new(user_params)
-        @users=User.all
-        if @user.save 
-            flash[:success]="User was successfully created."
+        @course=Course.new(course_params)
+        @courses=Course.all
+        if @course.save 
+            flash[:success]="Course was successfully created."
         end
-        render "admin/users/index"
+        render "admin/courses/index"
     end
 
     def edit 
-        render "admin/users/edit"
+        render "admin/courses/edit"
     end
 
     
     def update
-        if @user.update(user_params)
-            flash[:success] = "User was successfully updated."    
+        if @course.update(course_params)
+            flash[:success] = "Course was successfully updated."    
         else  
             flash[:danger] = "Something unexpected happened. Please try again"
         end
-        render "admin/users/index"
+        render "admin/courses/index"
     end
 
     def destroy
-        user=User.find_by(id:params[:id])
-        if user.destroy 
-            flash[:success]="User was successfully destroyed"
+        if @course.destroy 
+            flash[:success]="Course was successfully destroyed"
         else
             flash[:danger]="Something unexpected happened. Please try again"
         end
-        redirect_to admin_users_path
+        redirect_to admin_courses_path
     end
 
-    def set_user 
-        @user=User.find_by(id:params[:id])
-        @is_admin=@user.admin
-        @users=User.all
+    def set_course
+        @course=Course.find_by(id:params[:id])
+        @courses=Course.all
     end
 
-    def user_params
-        params.require(:user).permit(:username,:email,:password,:password_confirmation)
+    def course_params
+        params.require(:course).permit(:title)
     end
 
-end
+end 
