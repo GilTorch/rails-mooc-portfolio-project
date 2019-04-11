@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   get "/chapters/:id/reset",to:"chapters#reset",as:"reset_chapter"
 
 
+    get "/admin",to:"admin#home",as:"admin_root"
+
+  namespace :admin do 
+    resources :users, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
+  end
+
   resources :lessons
   resources :chapters
   resources :users

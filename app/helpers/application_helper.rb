@@ -3,6 +3,19 @@ module ApplicationHelper
         session[:username]!=nil
     end
 
+    def is_admin?      
+        if current_user==nil || current_user.admin==false 
+         return false 
+        end
+        return true
+     end
+
+    def is_admin_redirect?      
+        if current_user==nil || current_user.admin==false 
+         redirect_to root_path
+        end
+     end
+
     def current_user 
         if is_logged_in?
            user= User.find_by(username:session[:username])

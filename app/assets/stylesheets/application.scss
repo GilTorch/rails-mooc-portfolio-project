@@ -15,6 +15,24 @@
  */
 @import 'bootstrap';
 @import 'font-awesome';
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline|Pacifico|Roboto');
+
+
+// body{
+//     font-family: 'Roboto', sans-serif !important; 
+// }
+
+.brand:link,.brand:active,.brand:visited,.brand:hover{
+    font-family: 'Pacifico', cursive;
+    color:white;
+    text-shadow: 3px 3px 2px #3B5998;
+    font-weight:bold;
+    font-size:1.4em;
+}
+
+.brand:hover{
+    text-decoration: none;
+}
 
 .container .jumbotron {
     padding:1%;
