@@ -1,0 +1,66 @@
+<div class="container">
+<% flash.each do |key, value| %>
+<div class="flash-messages">
+  <% if key=="success" %> 
+   <div class="alert alert-success"><%= flash[:success] %></div>
+ <% end %>
+ </div>
+<% end %>
+<div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Courses</h1>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Chapter Count</th>
+      <th scope="col">Lesson Count</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+        <tr>
+            <th scope="row"><%= course.id %></th>
+            <td><%= course.title %></td>
+            <td><%= course.chapters.count %></td>
+            <td><%= course_lessons_count(course) %></td>
+            <td>
+                <a class="btn btn-success" href="/admin/courses/<%= course.id %>"><i class="fa fa-eye"></i></a>
+                <a class="btn btn-primary" href="/admin/courses/<%= course.id %>/edit"><i class="fa fa-pencil"></i></a>
+                <%= link_to admin_course_path(course),data: {:confirm => 'Are you sure?'}, :method => :delete,:class=>"btn btn-danger" do  %>
+                    <i class="fa fa-trash"></i>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= form_for @course,url:"/admin/courses",html: { class: "col-md-6 mb-3" } do |f| %>
+    <% if @course.errors.any? %>
+        <div class="alert alert-danger error_explanation">
+            <h2>
+            <%= pluralize(@course.errors.count, "error") %> prohibited
+            this course from being saved:
+            </h2>
+            <ul>
+                <% @course.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add New Course</h1>
+    </div>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title,:class => "form-control" %>
+    </div>
+    <%= f.submit %>
+<% end %>
+</div>
+</div>

@@ -150,4 +150,12 @@ module ApplicationHelper
             end
         end
     end
+
+    def course_lessons_count(course) 
+        course_lessons_count = 0 
+        course.chapters.each do |chapter|
+            course_lessons_count += chapter.lessons.count
+        end
+        course_lessons_count
+    end
 end
