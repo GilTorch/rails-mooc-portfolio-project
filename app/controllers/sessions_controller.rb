@@ -4,17 +4,18 @@ class SessionsController < ApplicationController
 
     def create
         if auth
-            
+            puts auth.inspect
             user = User.find_or_create_by(id: auth['uid']) do |u|
                 u.username = auth['info']['name']
                 u.email = auth['info']['email']
-                real_password="password"
+                real_password="12345678"
                 salt="my_salt"
                 sha1_password=Digest::SHA1.hexdigest("#{salt}#{real_password}")
-                u.password_digest=BCrypt::Password.create(sha1_password).to_s
+                u.password=BCrypt::Password.create(sha1_password).to_s
                 # u.image = auth['info']['image']
               end
               session[:username]=user.username 
+              puts "USER #{user.errors.inspect}"
               flash[:success]="Successfully logged in."
               redirect_to user_path(user)
         else

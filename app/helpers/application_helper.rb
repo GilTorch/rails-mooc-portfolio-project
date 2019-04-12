@@ -17,11 +17,7 @@ module ApplicationHelper
      end
 
     def current_user 
-        if is_logged_in?
-           user= User.find_by(username:session[:username])
-           return user
-        #    puts User.all.inspect 
-        end
+       User.find_by(username:session[:username])
     end
 
     def lesson_completed(lesson)
@@ -159,3 +155,4 @@ module ApplicationHelper
         course_lessons_count
     end
 end
+#   thin start -p 3001 --ssl --ssl-key-file ~/.ssl/server.key --ssl-cert-file ~/.ssl/server.crt
