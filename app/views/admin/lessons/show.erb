@@ -1,0 +1,38 @@
+<div class="container-fluid ml-0 mr-0">
+<div class="jumbotron jumbotron-fluid">
+<h1 class="text-center"><%= @lesson.title %> <i class="<%= complete_fail_icon(@lesson,"lesson") %>"></i></h1>
+</div>
+<div class="row">
+<div class="lessons-container offset-md-3 col-md-6 mt-3 mb-3">
+    <p class="text-center"> 
+        <% if @lesson.is_a_lab %>
+            [LAB]
+        <% end %>
+        <%= @lesson.content %>
+    </p>
+  <div class="text-center"> 
+      
+        <% if @course %>
+            <%= link_to "Go Back To Related Course",admin_course_path(@chapter.course),:class => "btn btn-success" %> 
+        <% else %>
+            [ NO COURSE RELATED ]
+        <% end %>
+        <% if @chapter %>
+            <%= link_to "Go Back To Related Chapter",admin_chapter_path(@chapter),:class => "btn btn-primary" %> 
+        <% else %>
+            [ NO CHAPTER RELATED]
+        <% end %>
+      <% if lesson_completed(@lesson) %>
+        <%= link_to "Reset Lesson",reset_lesson_path(@lesson),:class=>"btn btn-secondary" %>
+      <% end %>
+     <% if current_user.admin %>
+        <div class="jumbotron jumbotron-fluid mt-2">
+                    <h4 class="text-center">Admin Actions</h4>
+                    <%= link_to 'Edit Lesson', edit_admin_lesson_path(@lesson),:class=>"btn btn-primary" %>
+                    <%= link_to 'Destroy Lesson', admin_lesson_path(@lesson),data: {:confirm => 'Are you sure?'}, :method => :delete,:class=>"btn btn-danger" %>
+        </div>
+    <% end %>
+  </div>
+  </div>
+</div>
+</div>
