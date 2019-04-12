@@ -52,15 +52,16 @@
             </ul>
         </div>
     <% end %>
-    <% if @courses!=[] %>
-        <label for="course_id">Related Course</label>
-        <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
-    <% else %> 
-        No Courses Added Yet. <%= link_to("Create a Course",admin_courses_path) %>
-    <% end %>
- 
-     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Add New Chapter</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Add New Chapter</h1>
+    </div>
+    <div class="form-group">
+        <% if @courses!=[] %>
+            <label for="course_id">Related Course</label>
+            <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "title") %>
+        <% else %> 
+            No Courses Added Yet. <%= link_to("Create a Course",admin_courses_path) %>
+        <% end %>
     </div>
     <div class="form-group">
         <%= f.label :title %>
