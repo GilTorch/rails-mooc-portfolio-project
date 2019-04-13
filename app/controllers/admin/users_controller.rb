@@ -22,7 +22,6 @@ class Admin::UsersController < AdminController
     def edit 
         render "admin/users/edit"
     end
-
     
     def update
         if @user.update(user_params)

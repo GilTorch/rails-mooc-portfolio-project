@@ -20,7 +20,7 @@ class Admin::LessonsController < AdminController
 
     def create 
         @lesson=Lesson.new(lesson_params)
-        @lesson.chapter = Chapter.find_by(params[:chapter_id])
+        @lesson.chapter = Chapter.find_by(id:params[:chapter_id])
         if @lesson.save 
             flash[:success]="Lesson was successfully created."
         end
@@ -35,6 +35,7 @@ class Admin::LessonsController < AdminController
 
     
     def update
+        @lesson.chapter=Chapter.find_by(id:params[:chapter_id])
         if @lesson.update(lesson_params)
             flash[:success] = "Lesson was successfully updated."    
         else  
