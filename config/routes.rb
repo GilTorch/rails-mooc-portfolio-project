@@ -18,12 +18,14 @@ Rails.application.routes.draw do
 
 
     get "/admin",to:"admin#home",as:"admin_root"
+    get "admin/lessons/:id/validate",to:"admin/lessons#validate",as:"admin_validate_lesson"
 
   namespace :admin do 
     resources :users, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
     resources :courses, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
     resources :chapters, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
     resources :lessons, only: [:index,:show,:create,:edit,:update,:destroy,:delete]
+    resources :user_solutions, only:[:show]
   end
 
   resources :lessons

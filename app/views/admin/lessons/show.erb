@@ -6,10 +6,14 @@
 <div class="lessons-container offset-md-3 col-md-6 mt-3 mb-3">
     <p class="text-center"> 
         <% if @lesson.is_a_lab %>
-            [LAB]
+            <p>[LAB]<p>
+
         <% end %>
         <%= @lesson.content %>
     </p>
+    <% if @lesson.is_a_lab %>
+        <%= render partial:"lab_solutions"%>
+    <% end %>
   <div class="text-center"> 
       
         <% if @course %>

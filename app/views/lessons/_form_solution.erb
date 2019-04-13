@@ -12,7 +12,7 @@
     </form>
     <% if current_user.admin %>
         <div class="text-center mt-3 mb-3">
-            <%= link_to "Validate Solution",validate_lesson_path(@lesson),:class => "btn btn-danger" %> 
+            <%= link_to "See Solution",admin_lesson_path(@lesson),:class => "btn btn-danger" %> 
         </div>
     <% end %>
 </div>

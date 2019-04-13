@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Solutions</h1>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username of Trainee</th>
+      <th scope="col">Content of Solution</th>
+      <th scope="col">Is Validated</td>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @solutions.each do |solution| %>
+        <% lesson = lesson_from_user_solution(solution) %>
+        <tr>
+            <th scope="row"><%= solution.id %></th>
+            <td><%= username_from_user_solution(solution) %></td>
+            <td><%= solution.content %></td>
+            <td><%= solution.validated %></td>
+            <td><%= link_to "Validate",admin_validate_lesson_path(lesson),:class=>"btn btn-primary"%></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -154,5 +154,14 @@ module ApplicationHelper
         end
         course_lessons_count
     end
+
+    def username_from_user_solution(solution)
+        User.find_by(id:solution.user_lesson.user_id).username
+    end
+
+    def lesson_from_user_solution(solution)
+        user_lesson=solution.user_lesson 
+        Lesson.find_by(id:user_lesson.lesson.id)
+    end
 end
 #   thin start -p 3001 --ssl --ssl-key-file ~/.ssl/server.key --ssl-cert-file ~/.ssl/server.crt
